@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateBlog } from "../service/redux/actions/blogAction";
 
@@ -13,6 +13,13 @@ export const useUpdateBlog = (blog) => {
     const dispatch = useDispatch();
     const [isActive, setIsActive] = useState(blog.isActive ?? false);
     const [isUpdating, setIsUpdating] = useState(false);
+
+    // Sync local state when blog data update (e.g. initial load or external update)
+    useEffect(() => {
+        if (blog?.isActive !== undefined) {
+            setIsActive(blog.isActive);
+        }
+    }, [blog?.isActive]);
 
     /**
      * Toggle blog active status
