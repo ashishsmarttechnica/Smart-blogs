@@ -79,6 +79,7 @@ function BlogDetail() {
                             <img
                                 src={currentBlog.imgCloudi.url}
                                 alt={currentBlog.title}
+                                loading="lazy"
                                 className="w-full h-full object-cover"
                             />
                         </div>
